@@ -32,8 +32,7 @@ Experience the magic instantly. No installation required.
 
 <div align="center">
 
-**[► Click Here for a Live Demo ◄](https://raw.githack.com/seif4d/Codex-Ignis/main/gn.html)**
-
+**[► Click Here for a Live Demo ◄](https://github.com/seif4d/Codex-Ignis)**
 </div>
 
 <br>
