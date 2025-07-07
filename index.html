@@ -183,7 +183,7 @@
         input:checked + .slider { background-color: var(--primary); border-color: var(--primary); }
         input:checked + .slider:before { transform: translateX(20px); background-color: white; }
 
-        /* 🌟 NEW: Sort Controls Styling */
+        /* Sort Controls Styling */
         .sort-controls {
             display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
         }
@@ -251,9 +251,43 @@
         #chat-header {
             padding: 18px 35px; border-bottom: 1px solid var(--border); flex-shrink: 0; z-index: 50;
             display: flex; justify-content: space-between; align-items: center; background-color: var(--card-bg);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); gap: 20px;
         }
-        #chat-header h2 { margin: 0; font-size: 1.8rem; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* NEW: Container for title and its edit button */
+        #chat-header-title-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+            min-width: 0; /* Critical for text-overflow */
+        }
+
+        #chat-header-title-group h2 {
+            margin: 0; font-size: 1.8rem; font-weight: 900;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        
+        #editTitleBtn {
+             font-size: 1.1rem; padding: 8px; flex-shrink: 0;
+        }
+
+        /* NEW: Style for the dynamic title edit input */
+        .title-edit-input {
+            width: 95%;
+            font-family: var(--font-main);
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1.2;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--primary);
+            color: var(--text-main);
+            outline: none;
+            padding: 0;
+            margin: 0;
+        }
+
         #editCategoryBtn {
             font-size: 1em; color: var(--text-secondary); font-weight: 600; background-color: var(--ai-bg); padding: 8px 15px;
             border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition-fast);
@@ -331,7 +365,8 @@
             .sidebar.visible { transform: translateX(0); }
             body.sidebar-open::after { content: ''; position: fixed; inset: 0; background: rgba(0,0,0,0.5); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); z-index: 99; opacity: 1; transition: opacity var(--transition-med); }
             .message { max-width: 95%; }
-            #chat-header h2 { font-size: 1.6em; }
+            #chat-header-title-group h2 { font-size: 1.6em; } /* Responsive title size */
+            .title-edit-input { font-size: 1.6em; }
             #breadcrumbs { display: none; }
         }
     </style>
@@ -359,12 +394,12 @@
                 <h3><i class="fa-solid fa-upload"></i> استدعاء الذكريات</h3>
                  <div class="input-container">
                      <label for="fileInput" class="file-input-label json">
-                         <i class="fa-solid fa-file-code"></i>&nbsp; ملف (ChatGPT / DeepSeek)
+                         <i class="fa-solid fa-file-code"></i>  ملف (ChatGPT / DeepSeek)
                      </label>
                      <input type="file" id="fileInput" accept=".json">
                      
                      <label for="folderInput" class="file-input-label folder">
-                         <i class="fa-solid fa-folder"></i>&nbsp; مجلد (AI Studio)
+                         <i class="fa-solid fa-folder"></i>  مجلد (AI Studio)
                      </label>
                      <input type="file" id="folderInput" webkitdirectory directory multiple>
                  </div>
@@ -379,7 +414,7 @@
                     </label>
                     <label for="searchContentToggle" class="toggle-label-text">📜 بحث في المحتوى</label>
                 </div>
-                <!-- 🌟 NEW: Sort Controls -->
+                <!-- Sort Controls -->
                 <div class="sort-controls">
                     <select id="sort-by-select">
                         <option value="alphabetical">أبجدي</option>
@@ -398,10 +433,14 @@
 
         <!-- 🧩 MAIN WORKSPACE -->
         <main id="main-workspace">
+             <!-- MODIFIED: Chat Header with Title Edit Capability -->
             <div id="chat-header">
-                <h2 id="conversation-title-display">ابدأ الرحلة</h2>
+                <div id="chat-header-title-group">
+                    <h2 id="conversation-title-display">ابدأ الرحلة</h2>
+                    <button id="editTitleBtn" class="control-btn" title="تعديل العنوان ✏️" style="display: none;"><i class="fa-solid fa-pen"></i></button>
+                </div>
                 <button id="editCategoryBtn" style="display: none;">
-                    <span id="currentCategoryDisplay"></span>&nbsp;<i class="fa-solid fa-pen-to-square"></i>
+                    <span id="currentCategoryDisplay"></span> <i class="fa-solid fa-pen-to-square"></i>
                 </button>
             </div>
             <div id="message-container">
@@ -428,7 +467,7 @@
                 </div>
 
                 <h3><i class="fa-solid fa-save"></i> ختم الذاكرة</h3>
-                <button id="downloadButton"><i class="fa-solid fa-download"></i>&nbsp; حفظ التغييرات</button>
+                <button id="downloadButton"><i class="fa-solid fa-download"></i>  حفظ التغييرات</button>
             </div>
         </aside>
     </div>
@@ -473,21 +512,21 @@
             modalCategoryList: document.getElementById('modalCategoryList'), cancelCategoryEditBtn: document.getElementById('cancelCategoryEdit'),
             saveCategoryEditBtn: document.getElementById('saveCategoryEdit'), notificationToast: document.getElementById('notification-toast'),
             toastMessage: document.getElementById('toast-message'), toastIcon: document.querySelector('#notification-toast .toast-icon'),
-            // 🌟 NEW: Sort control elements
             sortBySelect: document.getElementById('sort-by-select'),
             sortDirectionBtn: document.getElementById('sort-direction-btn'),
+            // NEW: Title editing elements
+            titleGroup: document.getElementById('chat-header-title-group'),
+            editTitleBtn: document.getElementById('editTitleBtn'),
         };
 
         // --- State Management ---
         let allConversations = [];
         let activeConversationIndex = -1;
         let activeListItem = null;
-        // 🌟 NEW: State for sorting
-        let currentSort = {
-            by: 'alphabetical', // 'alphabetical', 'date', 'size'
-            direction: 'asc'     // 'asc', 'desc'
-        };
-
+        let currentSort = { by: 'alphabetical', direction: 'asc' };
+        // NEW: State for title editing
+        let isEditingTitle = false;
+        let originalTitleBeforeEdit = '';
 
         // --- Constants & Config ---
         const STOP_WORDS = new Set(['في','من','على','و','يا','هو','هي','أنا','انت','إلى','عن','تم','قد','أن','هذا','هذه','ذلك','مع','كل','يكون','كان','لا','ما','لو','بس','يعني','أو','اللي','ده','دي','فيه','جدا','طيب','تمام','إيه','زي','مش','اه','the','a','an','is','are','was','were','in','on','at','of','to','for','with','by','and','or','but','if','you','i','me','my','he','she','it','we','they','that','this','what','which','who','when','where','why','how','can','will','do','does','did','not','so','be','just','very','also','لكن','هل','كيف','متى','أين','لماذا','عندي','عندك','لدى']);
@@ -515,10 +554,10 @@
             dom.cancelCategoryEditBtn.addEventListener('click', closeCategoryEditModal);
             dom.saveCategoryEditBtn.addEventListener('click', saveCategoryChange);
             dom.modalCategoryInput.addEventListener('input', () => populateModalCategoryList(dom.modalCategoryInput.value));
-            
-            // 🌟 NEW: Sort control listeners
             dom.sortBySelect.addEventListener('change', handleSortChange);
             dom.sortDirectionBtn.addEventListener('click', handleSortDirectionChange);
+            // NEW: Title Edit Listener
+            dom.editTitleBtn.addEventListener('click', startTitleEdit);
             
             dom.categoryEditModal.addEventListener('click', (e) => { if (e.target === dom.categoryEditModal) closeCategoryEditModal(); });
             document.addEventListener('click', (event) => {
@@ -528,12 +567,11 @@
                     toggleSidebar(visibleSidebar, false);
                 }
             });
-
-            updateSortDirectionIcon(); // Set initial sort icon
+            updateSortDirectionIcon();
         }
         
         // ========================================================
-        // --- 🌟 MODIFIED: Universal Data Transformation Engine
+        // --- Universal Data Transformation Engine
         // ========================================================
         function transformChatGPTData(rawData) {
             return rawData.map(convoData => {
@@ -608,7 +646,6 @@
                 processAllConversations(transformedData);
             } catch (e) {
                  try {
-                    // 🌟 MODIFIED: Pass current timestamp for single file imports
                     const singleConvo = transformAiStudioData("Imported File", content, Date.now());
                     if (singleConvo) {
                         showToast("✨ تم التعرف على إشارة AI Studio...");
@@ -636,7 +673,6 @@
         async function handleFolderSelect(event) {
             const files = event.target.files; if (!files || files.length === 0) return; resetUIForLoad();
             showToast(`✨ جاري استدعاء ${files.length} ذاكرة من AI Studio...`);
-            // 🌟 MODIFIED: Pass file's lastModified timestamp
             const promises = Array.from(files).map(file => {
                  if (file.name.endsWith('.json') || !file.name.includes('.')) {
                     return file.text().then(content => ({ name: file.name, content, lastModified: file.lastModified }));
@@ -653,13 +689,13 @@
         function processAllConversations(data) {
             allConversations = data.map(convo => ({ 
                 category: "بدون تصنيف", 
-                lastModified: null, // Ensure a default null value
+                lastModified: null,
                 ...convo 
             }));
             
             requestAnimationFrame(() => {
                 if (allConversations.length > 0) {
-                    filterAndRenderConversationList(); // This renders the full list initially
+                    filterAndRenderConversationList();
                     dom.initialView.style.display = 'none';
                     const firstItem = dom.conversationListContainer.querySelector('li');
                     if (firstItem) firstItem.click();
@@ -668,14 +704,13 @@
             });
         }
         
-        // --- 🌟 NEW: Sort Control Handlers ---
+        // --- Sort Control Handlers ---
         function handleSortChange(event) {
             currentSort.by = event.target.value;
-            // Set a logical default direction for the selected sort type
             if (currentSort.by === 'date' || currentSort.by === 'size') {
-                currentSort.direction = 'desc'; // Default to newest/largest first
+                currentSort.direction = 'desc';
             } else {
-                currentSort.direction = 'asc'; // Default to A-Z
+                currentSort.direction = 'asc';
             }
             updateSortDirectionIcon();
             filterAndRenderConversationList();
@@ -691,23 +726,16 @@
             const icon = dom.sortDirectionBtn.querySelector('i');
             const isAsc = currentSort.direction === 'asc';
             let newIconClass = '';
-
             switch (currentSort.by) {
-                case 'alphabetical':
-                    newIconClass = isAsc ? 'fa-arrow-down-a-z' : 'fa-arrow-up-z-a';
-                    break;
-                case 'size': // Represents "الأضخم" (Largest) vs Smallest
-                    newIconClass = isAsc ? 'fa-arrow-down-1-9' : 'fa-arrow-up-9-1';
-                    break;
-                case 'date': // Represents "الأحدث" (Newest) vs Oldest
-                    newIconClass = isAsc ? 'fa-arrow-down-short-wide' : 'fa-arrow-up-wide-short';
-                    break;
+                case 'alphabetical': newIconClass = isAsc ? 'fa-arrow-down-a-z' : 'fa-arrow-up-z-a'; break;
+                case 'size': newIconClass = isAsc ? 'fa-arrow-down-1-9' : 'fa-arrow-up-9-1'; break;
+                case 'date': newIconClass = isAsc ? 'fa-arrow-down-short-wide' : 'fa-arrow-up-wide-short'; break;
             }
             icon.className = `fa-solid ${newIconClass}`;
             dom.sortDirectionBtn.title = isAsc ? 'ترتيب تصاعدي' : 'ترتيب تنازلي';
         }
 
-        // --- 🌟 MODIFIED: Search, Sort, and Render Function ---
+        // --- Search, Sort, and Render Function ---
         function filterAndRenderConversationList() {
             dom.conversationListContainer.innerHTML = '';
             if (allConversations.length === 0) return;
@@ -728,22 +756,15 @@
                         return false;
                     });
             
-            // --- Sorting Logic ---
             filteredConversations.sort((a, b) => {
                 const dir = currentSort.direction === 'asc' ? 1 : -1;
                 switch (currentSort.by) {
                     case 'date':
-                        const dateA = a.lastModified;
-                        const dateB = b.lastModified;
-                        if (!dateA && dateB) return 1; // Push nulls to the bottom
-                        if (dateA && !dateB) return -1;
-                        if (!dateA && !dateB) return 0;
-                        return (dateB - dateA) * dir; // Newest first is descending
-                    case 'size':
-                        return (b.messages.length - a.messages.length) * dir; // Largest first is descending
-                    case 'alphabetical':
-                    default:
-                        return (a.title || '').localeCompare(b.title || '') * dir;
+                        const dateA = a.lastModified; const dateB = b.lastModified;
+                        if (!dateA && dateB) return 1; if (dateA && !dateB) return -1; if (!dateA && !dateB) return 0;
+                        return (dateB - dateA) * dir;
+                    case 'size': return (b.messages.length - a.messages.length) * dir;
+                    case 'alphabetical': default: return (a.title || '').localeCompare(b.title || '') * dir;
                 }
             });
 
@@ -754,10 +775,7 @@
                 return acc;
             }, {});
             
-            const sortedCategories = Object.keys(grouped).sort((a,b) => {
-                if (a === 'بدون تصنيف') return 1; if (b === 'بدون تصنيف') return -1;
-                return a.localeCompare(b);
-            });
+            const sortedCategories = Object.keys(grouped).sort((a,b) => { if (a === 'بدون تصنيف') return 1; if (b === 'بدون تصنيف') return -1; return a.localeCompare(b); });
             const fragment = document.createDocumentFragment();
 
             sortedCategories.forEach(category => {
@@ -790,10 +808,8 @@
                 fragment.appendChild(ul);
             });
             dom.conversationListContainer.appendChild(fragment);
-
             dom.conversationListContainer.querySelectorAll('.conversation-group:not(.collapsed)').forEach(group => { group.style.maxHeight = `${group.scrollHeight}px`; });
-            
-             if(activeConversationIndex !== -1) {
+            if(activeConversationIndex !== -1) {
                 const currentLi = dom.conversationListContainer.querySelector(`li[data-index="${activeConversationIndex}"]`);
                 if(currentLi) { currentLi.classList.add('active'); activeListItem = currentLi; }
             }
@@ -801,11 +817,15 @@
         
         function displayConversation(index) {
             if (index < 0 || index >= allConversations.length) return;
+            
+            cancelActiveTitleEdit(); // Cancel any ongoing edit before switching
+            
             activeConversationIndex = index;
             const conversation = allConversations[index];
             
             dom.initialView.style.display = 'none';
             dom.editCategoryBtn.style.display = 'flex';
+            dom.editTitleBtn.style.display = 'block'; // Show title edit button
             dom.conversationTitleDisplay.textContent = conversation.title;
             dom.currentCategoryDisplay.textContent = conversation.category || 'بدون تصنيف';
             dom.breadcrumbs.innerHTML = `<span class="breadcrumb-main"><i class="fa-solid fa-dragon"></i> مخطوطة النار</span> <i class="fa-solid fa-angle-right"></i> <span class="breadcrumb-category">${conversation.category}</span>`;
@@ -827,11 +847,9 @@
             const isUser = USER_IDENTIFIERS.includes(msg.author?.toLowerCase());
             const wrapper = document.createElement('div');
             wrapper.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
-            
             const content = document.createElement('div');
             content.className = 'message-content';
             content.innerHTML = DOMPurify.sanitize(marked.parse(msg.content));
-            
             wrapper.appendChild(content);
             return wrapper;
         }
@@ -860,6 +878,74 @@
                 });
                 pre.appendChild(btn);
             });
+        }
+        
+        // ===================================
+        // --- NEW: Title Editing Functions ---
+        // ===================================
+        function startTitleEdit() {
+            if (isEditingTitle || activeConversationIndex < 0) return;
+            isEditingTitle = true;
+
+            originalTitleBeforeEdit = allConversations[activeConversationIndex].title;
+            
+            dom.conversationTitleDisplay.style.display = 'none';
+            dom.editTitleBtn.style.display = 'none';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'title-edit-input';
+            input.id = 'title-edit-input-dynamic';
+            input.value = originalTitleBeforeEdit;
+            
+            dom.titleGroup.insertAdjacentElement('afterbegin', input);
+            input.focus();
+            input.select();
+
+            input.addEventListener('blur', endTitleEdit);
+            input.addEventListener('keydown', handleTitleEditKeydown);
+        }
+
+        function handleTitleEditKeydown(event) {
+            if (event.key === 'Enter') {
+                event.target.blur(); // Triggers the 'blur' event, which saves
+            } else if (event.key === 'Escape') {
+                event.target.value = originalTitleBeforeEdit; // Revert value before blurring
+                event.target.blur(); // Trigger blur to clean up the UI
+            }
+        }
+
+        function endTitleEdit(event) {
+            if (!isEditingTitle) return;
+
+            const input = document.getElementById('title-edit-input-dynamic');
+            if (!input) return; // Already cleaned up
+
+            const newTitle = input.value.trim();
+
+            input.remove(); // Cleanup DOM first, this also removes its event listeners
+            dom.conversationTitleDisplay.style.display = 'block';
+            dom.editTitleBtn.style.display = 'block';
+            isEditingTitle = false;
+
+            if (newTitle && newTitle !== originalTitleBeforeEdit) {
+                allConversations[activeConversationIndex].title = newTitle;
+                dom.conversationTitleDisplay.textContent = newTitle;
+                const listItem = dom.conversationListContainer.querySelector(`li[data-index="${activeConversationIndex}"]`);
+                if (listItem) { listItem.textContent = newTitle; }
+                showToast('🎉 تم تحديث العنوان بنجاح!');
+            } else {
+                dom.conversationTitleDisplay.textContent = originalTitleBeforeEdit; // Revert H2 text
+            }
+        }
+
+        function cancelActiveTitleEdit() {
+            if (!isEditingTitle) return;
+            const input = document.getElementById('title-edit-input-dynamic');
+            if (input) {
+                input.value = originalTitleBeforeEdit;
+                input.blur();
+            }
         }
         
         // ============================
@@ -896,12 +982,9 @@
             const newCategory = dom.modalCategoryInput.value.trim();
             if (!newCategory) { showToast('⚠️ التصنيف لا يمكن أن يكون فارغًا!', false); return; }
             allConversations[activeConversationIndex].category = newCategory;
-            
             filterAndRenderConversationList();
-            
             dom.currentCategoryDisplay.textContent = newCategory;
             dom.breadcrumbs.querySelector('.breadcrumb-category').textContent = newCategory;
-            
             closeCategoryEditModal();
             showToast(`✅ تم تعديل التصنيف إلى "${newCategory}"`);
         }
@@ -919,6 +1002,8 @@
             dom.messageContainer.innerHTML = '<div></div>';
             dom.conversationTitleDisplay.textContent = 'جاري الاستدعاء...';
             dom.editCategoryBtn.style.display = 'none';
+            dom.editTitleBtn.style.display = 'none';
+            cancelActiveTitleEdit();
             activeConversationIndex = -1; activeListItem = null;
             resetAnalysisPane();
         }
@@ -953,7 +1038,6 @@
         function toggleDarkMode(forceLight = false) {
             const currentlyDark = dom.body.classList.contains('dark-mode');
             const turnLight = forceLight ? true : currentlyDark;
-
             dom.body.classList.toggle('dark-mode', !turnLight);
             dom.body.classList.toggle('light-mode', turnLight);
             dom.darkModeToggle.innerHTML = turnLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
@@ -966,7 +1050,6 @@
             clearTimeout(toastTimeout);
             dom.toastMessage.textContent = message;
             dom.toastIcon.innerHTML = isSuccess ? '✅' : '⚠️';
-            dom.notificationToast.style.borderLeft = `4px solid ${isSuccess ? '#00c5a7' : 'var(--primary)'}`;
             dom.notificationToast.classList.add('show');
             toastTimeout = setTimeout(() => dom.notificationToast.classList.remove('show'), 3500);
         }
