@@ -159,62 +159,55 @@
         #searchInput:focus { border-color: var(--secondary); box-shadow: 0 0 0 4px rgba(240, 165, 0, 0.2); }
         #search-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; font-size: 1.2em; }
         
-        /* --- 🌟 NEW: Search Options Toggle --- */
         .search-options {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 12px;
             margin: -5px 0 15px 0; /* Position below search bar */
         }
         .search-options .toggle-label-text {
-            font-weight: 600;
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            cursor: pointer;
-            user-select: none;
-            transition: color var(--transition-fast);
+            font-weight: 600; font-size: 0.9em; color: var(--text-secondary); cursor: pointer;
+            user-select: none; transition: color var(--transition-fast);
         }
-        .search-options .toggle-label-text:hover {
-            color: var(--text-main);
-        }
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 24px;
-        }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .search-options .toggle-label-text:hover { color: var(--text-main); }
+        .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: var(--ai-bg);
-            border: 1px solid var(--border);
-            transition: .4s;
-            border-radius: 12px;
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--ai-bg); border: 1px solid var(--border);
+            transition: .4s; border-radius: 12px;
         }
         .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: var(--text-secondary);
-            transition: .4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 50%;
+            position: absolute; content: ""; height: 16px; width: 16px;
+            left: 3px; bottom: 3px; background-color: var(--text-secondary);
+            transition: .4s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 50%;
         }
-        input:checked + .slider {
-            background-color: var(--primary);
-            border-color: var(--primary);
+        input:checked + .slider { background-color: var(--primary); border-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(20px); background-color: white; }
+
+        /* 🌟 NEW: Sort Controls Styling */
+        .sort-controls {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
         }
-        input:checked + .slider:before {
-            transform: translateX(20px);
-            background-color: white;
+        #sort-by-select {
+            flex-grow: 1; background: var(--card-bg); color: var(--text-main);
+            border: 2px solid var(--border); border-radius: var(--radius-md); padding: 10px 15px;
+            font-family: var(--font-main); font-size: 0.9em; font-weight: 600; outline: none;
+            transition: all var(--transition-med); cursor: pointer; -webkit-appearance: none; -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0a0b0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: left 15px center; background-size: 1.2em;
+            padding-left: 40px;
+        }
+        body.light-mode #sort-by-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235A5A5A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        }
+        #sort-by-select:focus {
+            border-color: var(--secondary); box-shadow: 0 0 0 4px rgba(240, 165, 0, 0.2);
+        }
+        #sort-direction-btn {
+            font-size: 1.4rem; flex-shrink: 0; padding: 8px; border: 2px solid var(--border);
+            background: var(--card-bg); line-height: 1;
+        }
+        #sort-direction-btn:hover {
+            color: var(--primary); border-color: var(--primary); transform: scale(1.05);
         }
 
         /* Conversation List (OmniView Style) */
@@ -379,13 +372,23 @@
                     <input type="search" id="searchInput" placeholder="ابحث في العناوين أو المحتوى...">
                     <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <!-- 🌟 NEW: Search Options Toggle -->
                 <div class="search-options">
                     <label class="toggle-switch">
                         <input type="checkbox" id="searchContentToggle">
                         <span class="slider"></span>
                     </label>
                     <label for="searchContentToggle" class="toggle-label-text">📜 بحث في المحتوى</label>
+                </div>
+                <!-- 🌟 NEW: Sort Controls -->
+                <div class="sort-controls">
+                    <select id="sort-by-select">
+                        <option value="alphabetical">أبجدي</option>
+                        <option value="date">الأحدث</option>
+                        <option value="size">الأضخم</option>
+                    </select>
+                    <button id="sort-direction-btn" class="control-btn" title="تغيير اتجاه الترتيب">
+                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                    </button>
                 </div>
             </div>
             <div id="conversation-list-container">
@@ -469,13 +472,22 @@
             categoryEditModal: document.getElementById('categoryEditModal'), modalCategoryInput: document.getElementById('modalCategoryInput'),
             modalCategoryList: document.getElementById('modalCategoryList'), cancelCategoryEditBtn: document.getElementById('cancelCategoryEdit'),
             saveCategoryEditBtn: document.getElementById('saveCategoryEdit'), notificationToast: document.getElementById('notification-toast'),
-            toastMessage: document.getElementById('toast-message'), toastIcon: document.querySelector('#notification-toast .toast-icon')
+            toastMessage: document.getElementById('toast-message'), toastIcon: document.querySelector('#notification-toast .toast-icon'),
+            // 🌟 NEW: Sort control elements
+            sortBySelect: document.getElementById('sort-by-select'),
+            sortDirectionBtn: document.getElementById('sort-direction-btn'),
         };
 
         // --- State Management ---
         let allConversations = [];
         let activeConversationIndex = -1;
         let activeListItem = null;
+        // 🌟 NEW: State for sorting
+        let currentSort = {
+            by: 'alphabetical', // 'alphabetical', 'date', 'size'
+            direction: 'asc'     // 'asc', 'desc'
+        };
+
 
         // --- Constants & Config ---
         const STOP_WORDS = new Set(['في','من','على','و','يا','هو','هي','أنا','انت','إلى','عن','تم','قد','أن','هذا','هذه','ذلك','مع','كل','يكون','كان','لا','ما','لو','بس','يعني','أو','اللي','ده','دي','فيه','جدا','طيب','تمام','إيه','زي','مش','اه','the','a','an','is','are','was','were','in','on','at','of','to','for','with','by','and','or','but','if','you','i','me','my','he','she','it','we','they','that','this','what','which','who','when','where','why','how','can','will','do','does','did','not','so','be','just','very','also','لكن','هل','كيف','متى','أين','لماذا','عندي','عندك','لدى']);
@@ -504,6 +516,10 @@
             dom.saveCategoryEditBtn.addEventListener('click', saveCategoryChange);
             dom.modalCategoryInput.addEventListener('input', () => populateModalCategoryList(dom.modalCategoryInput.value));
             
+            // 🌟 NEW: Sort control listeners
+            dom.sortBySelect.addEventListener('change', handleSortChange);
+            dom.sortDirectionBtn.addEventListener('click', handleSortDirectionChange);
+            
             dom.categoryEditModal.addEventListener('click', (e) => { if (e.target === dom.categoryEditModal) closeCategoryEditModal(); });
             document.addEventListener('click', (event) => {
                 if (!dom.body.classList.contains('sidebar-open')) return;
@@ -512,18 +528,20 @@
                     toggleSidebar(visibleSidebar, false);
                 }
             });
+
+            updateSortDirectionIcon(); // Set initial sort icon
         }
         
         // ========================================================
-        // --- 🌟 FIXED: Universal Data Transformation Engine (Restored from working version)
+        // --- 🌟 MODIFIED: Universal Data Transformation Engine
         // ========================================================
         function transformChatGPTData(rawData) {
             return rawData.map(convoData => {
                 const messages = [];
                 const mapping = convoData.mapping;
-                if (!mapping) return { title: convoData.title, messages: [] };
+                if (!mapping) return { title: convoData.title, messages: [], lastModified: null };
                 let rootNode = Object.values(mapping).find(node => node.parent === null);
-                if (!rootNode) return { title: convoData.title, messages: [] };
+                if (!rootNode) return { title: convoData.title, messages: [], lastModified: null };
                 let currentNodeId = rootNode.children.length > 0 ? rootNode.children[0] : null;
                 while (currentNodeId) {
                     const node = mapping[currentNodeId];
@@ -535,13 +553,13 @@
                     }
                     currentNodeId = node.children.length > 0 ? node.children[0] : null;
                 }
-                return { title: convoData.title, messages: messages };
+                return { title: convoData.title, messages: messages, lastModified: null };
             });
         }
 
         function transformDeepSeekData(rawData) {
             return rawData.map((convo, index) => {
-                    const newConvo = { title: convo.title || `إشارة DeepSeek #${index + 1}`, messages: [] };
+                    const newConvo = { title: convo.title || `إشارة DeepSeek #${index + 1}`, messages: [], lastModified: null };
                     const mapping = convo.mapping;
                     if (!mapping || !mapping.root || !mapping.root.children) return newConvo;
                     let currentNodeId = mapping.root.children[0];
@@ -558,13 +576,13 @@
                 });
         }
 
-        function transformAiStudioData(fileName, content) {
+        function transformAiStudioData(fileName, content, lastModified = null) {
             const data = JSON.parse(content);
             if (!data.chunkedPrompt || !Array.isArray(data.chunkedPrompt.chunks)) return null;
             const messages = data.chunkedPrompt.chunks
                 .filter(chunk => chunk.role && chunk.text && !chunk.isThought)
                 .map(chunk => ({ author: chunk.role === 'user' ? 'user' : 'AI Studio', content: chunk.text }));
-            return { title: fileName.replace('.json', ''), messages: messages };
+            return { title: fileName.replace('.json', ''), messages: messages, lastModified: lastModified };
         }
 
         function detectAndProcessFileContent(content) {
@@ -589,9 +607,9 @@
                 }
                 processAllConversations(transformedData);
             } catch (e) {
-                // If parsing an array fails, try parsing it as a single AI studio file object
                  try {
-                    const singleConvo = transformAiStudioData("Imported File", content);
+                    // 🌟 MODIFIED: Pass current timestamp for single file imports
+                    const singleConvo = transformAiStudioData("Imported File", content, Date.now());
                     if (singleConvo) {
                         showToast("✨ تم التعرف على إشارة AI Studio...");
                         processAllConversations([singleConvo]);
@@ -618,22 +636,26 @@
         async function handleFolderSelect(event) {
             const files = event.target.files; if (!files || files.length === 0) return; resetUIForLoad();
             showToast(`✨ جاري استدعاء ${files.length} ذاكرة من AI Studio...`);
+            // 🌟 MODIFIED: Pass file's lastModified timestamp
             const promises = Array.from(files).map(file => {
                  if (file.name.endsWith('.json') || !file.name.includes('.')) {
-                    return file.text().then(content => ({ name: file.name, content }));
+                    return file.text().then(content => ({ name: file.name, content, lastModified: file.lastModified }));
                  }
                  return Promise.resolve(null);
             });
             try {
                 const fileContents = (await Promise.all(promises)).filter(Boolean);
-                const transformedData = fileContents.map(file => { try { return transformAiStudioData(file.name, file.content); } catch (e) { return null; }}).filter(Boolean);
+                const transformedData = fileContents.map(file => { try { return transformAiStudioData(file.name, file.content, file.lastModified); } catch (e) { return null; }}).filter(Boolean);
                 processAllConversations(transformedData);
             } catch(e) { handleFileReadError(e); }
         }
 
         function processAllConversations(data) {
-            // Add the category property required by the new UI
-            allConversations = data.map(convo => ({ category: "بدون تصنيف", ...convo }));
+            allConversations = data.map(convo => ({ 
+                category: "بدون تصنيف", 
+                lastModified: null, // Ensure a default null value
+                ...convo 
+            }));
             
             requestAnimationFrame(() => {
                 if (allConversations.length > 0) {
@@ -646,7 +668,46 @@
             });
         }
         
-        // --- Search and Render Function ---
+        // --- 🌟 NEW: Sort Control Handlers ---
+        function handleSortChange(event) {
+            currentSort.by = event.target.value;
+            // Set a logical default direction for the selected sort type
+            if (currentSort.by === 'date' || currentSort.by === 'size') {
+                currentSort.direction = 'desc'; // Default to newest/largest first
+            } else {
+                currentSort.direction = 'asc'; // Default to A-Z
+            }
+            updateSortDirectionIcon();
+            filterAndRenderConversationList();
+        }
+
+        function handleSortDirectionChange() {
+            currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            updateSortDirectionIcon();
+            filterAndRenderConversationList();
+        }
+
+        function updateSortDirectionIcon() {
+            const icon = dom.sortDirectionBtn.querySelector('i');
+            const isAsc = currentSort.direction === 'asc';
+            let newIconClass = '';
+
+            switch (currentSort.by) {
+                case 'alphabetical':
+                    newIconClass = isAsc ? 'fa-arrow-down-a-z' : 'fa-arrow-up-z-a';
+                    break;
+                case 'size': // Represents "الأضخم" (Largest) vs Smallest
+                    newIconClass = isAsc ? 'fa-arrow-down-1-9' : 'fa-arrow-up-9-1';
+                    break;
+                case 'date': // Represents "الأحدث" (Newest) vs Oldest
+                    newIconClass = isAsc ? 'fa-arrow-down-short-wide' : 'fa-arrow-up-wide-short';
+                    break;
+            }
+            icon.className = `fa-solid ${newIconClass}`;
+            dom.sortDirectionBtn.title = isAsc ? 'ترتيب تصاعدي' : 'ترتيب تنازلي';
+        }
+
+        // --- 🌟 MODIFIED: Search, Sort, and Render Function ---
         function filterAndRenderConversationList() {
             dom.conversationListContainer.innerHTML = '';
             if (allConversations.length === 0) return;
@@ -654,22 +715,37 @@
             const searchTerm = dom.searchInput.value.toLowerCase().trim();
             const searchInContent = dom.searchContentToggle.checked;
 
-            const filteredConversations = searchTerm === ''
-                ? allConversations.map((convo, index) => ({...convo, originalIndex: index})) // Show all if search is empty
+            let filteredConversations = searchTerm === ''
+                ? allConversations.map((convo, index) => ({...convo, originalIndex: index}))
                 : allConversations
                     .map((convo, index) => ({...convo, originalIndex: index}))
                     .filter(convo => {
                         const titleMatch = (convo.title || "").toLowerCase().includes(searchTerm);
                         if (titleMatch) return true;
-
                         if (searchInContent) {
-                            return (convo.messages || []).some(msg => 
-                                (msg.content || "").toLowerCase().includes(searchTerm)
-                            );
+                            return (convo.messages || []).some(msg => (msg.content || "").toLowerCase().includes(searchTerm));
                         }
-                        
                         return false;
                     });
+            
+            // --- Sorting Logic ---
+            filteredConversations.sort((a, b) => {
+                const dir = currentSort.direction === 'asc' ? 1 : -1;
+                switch (currentSort.by) {
+                    case 'date':
+                        const dateA = a.lastModified;
+                        const dateB = b.lastModified;
+                        if (!dateA && dateB) return 1; // Push nulls to the bottom
+                        if (dateA && !dateB) return -1;
+                        if (!dateA && !dateB) return 0;
+                        return (dateB - dateA) * dir; // Newest first is descending
+                    case 'size':
+                        return (b.messages.length - a.messages.length) * dir; // Largest first is descending
+                    case 'alphabetical':
+                    default:
+                        return (a.title || '').localeCompare(b.title || '') * dir;
+                }
+            });
 
             const grouped = filteredConversations.reduce((acc, convo) => {
                 const category = convo.category || 'بدون تصنيف';
@@ -715,10 +791,8 @@
             });
             dom.conversationListContainer.appendChild(fragment);
 
-            // Set initial heights for expansion
             dom.conversationListContainer.querySelectorAll('.conversation-group:not(.collapsed)').forEach(group => { group.style.maxHeight = `${group.scrollHeight}px`; });
             
-            // Re-select active conversation if it's visible after filtering
              if(activeConversationIndex !== -1) {
                 const currentLi = dom.conversationListContainer.querySelector(`li[data-index="${activeConversationIndex}"]`);
                 if(currentLi) { currentLi.classList.add('active'); activeListItem = currentLi; }
