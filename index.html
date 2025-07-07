@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex Ignis 📜 The Omni-Archive | الصفحة الرئيسية</title>
+
+    <!-- Libs: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* =================================================================
+           --- 🎨 || CODEX DNA: THE UNIFIED THEME (FIRE & SHADOW) || 🎨 ---
+           ================================================================= */
+        :root {
+            --primary: #FF3B3B;     /* Fiery Red Accent */
+            --secondary: #F0A500;   /* Molten Gold Accent */
+            --bg-dark: #0a0a0b;      /* Deep Abyss Black */
+            --card-bg: #121214;
+            --text-main: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --border: #333333;
+            --shadow-color: rgba(255, 59, 59, 0.2);
+            --font-main: 'Cairo', sans-serif;
+            --radius-md: 12px;
+            --transition-med: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: 0.2s ease-out;
+        }
+
+        /* --- Base & Scrollbar --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; border: 2px solid var(--bg-dark); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* --- Global Styles --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        h2.section-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text-main);
+            position: relative;
+        }
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 2px;
+        }
+
+        /* --- Header --- */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        .app-header.scrolled {
+            background-color: rgba(18, 18, 20, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        .logo i {
+            color: var(--primary);
+            margin-right: 8px;
+            transition: transform var(--transition-fast);
+        }
+        .logo:hover i {
+            transform: rotate(-15deg) scale(1.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .hero .dragon-icon {
+            font-size: 6rem;
+            color: var(--primary);
+            text-shadow: 0 0 25px var(--shadow-color), 0 0 50px var(--shadow-color);
+            animation: pulseDragon 4s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 35px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), #b82d2d);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            box-shadow: 0 5px 20px var(--shadow-color);
+        }
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px var(--shadow-color);
+            filter: brightness(1.2);
+        }
+        .cta-button i { margin-right: 10px; }
+
+        /* --- Features Section --- */
+        #features {
+            background-color: var(--bg-dark);
+            position: relative;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 35px 25px;
+            text-align: center;
+            transition: all var(--transition-med);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* --- How it Works Section --- */
+        #how-it-works {
+            background-color: var(--card-bg); /* Slightly different bg */
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        .step-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background-color: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            transition: all var(--transition-fast);
+        }
+        .step:hover .step-icon-wrapper {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--shadow-color);
+            transform: scale(1.1);
+        }
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        .step p {
+            color: var(--text-secondary);
+        }
+
+        /* --- Testimonial Section --- */
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border-right: 5px solid var(--primary);
+            padding: 40px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            max-width: 800px;
+            margin: 0 auto;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        .testimonial-card blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+        .testimonial-card cite {
+            display: block;
+            text-align: left;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* --- Footer --- */
+        .app-footer {
+            background-color: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .app-footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .app-footer .fa-dragon {
+            color: var(--primary);
+        }
+        
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseDragon { 
+            0%, 100% { transform: scale(1); text-shadow: 0 0 25px var(--shadow-color); } 
+            50% { transform: scale(1.1); text-shadow: 0 0 50px var(--primary); } 
+        }
+
+        .animated-section {
+            opacity: 0;
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(50px);
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .feature-card.is-visible, .step.is-visible, .testimonial-card.is-visible {
+             opacity: 1;
+             transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h2.section-title { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            .container { padding: 60px 0; }
+        }
+        @media (max-width: 480px) {
+            .logo { font-size: 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .cta-button { padding: 15px 30px; font-size: 1rem;}
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header" id="app-header">
+        <a href="#" class="logo"><i class="fa-solid fa-dragon"></i> Codex Ignis</a>
+        <a href="#features" class="cta-button" style="padding: 12px 25px; box-shadow: none;">المميزات ✨</a>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <canvas id="particle-canvas"></canvas>
+            <div class="hero-content">
+                <i class="fas fa-dragon dragon-icon"></i>
+                <h1>مخطوطة النار: <span>حيثُ لا تُنسى المعرفة</span></h1>
+                <p>أطلق العنان لذاكرة التنين بداخلك. استدعِ، استكشف، وحلل أرشيف محادثاتك مع الذكاء الاصطناعي في واجهة واحدة، قوية، وساحرة.</p>
+                <a href="app.html" class="cta-button" title="قم بتحميل ملف التطبيق واستخدمه مباشرة في متصفحك!">
+                    <i class="fa-solid fa-download"></i> حمل المخطوطة الآن
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container animated-section">
+            <h2 class="section-title">قوة التنين بين يديك 🐉</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-file-import feature-icon"></i>
+                    <h3>استدعاء شامل</h3>
+                    <p>قم باستيراد محادثاتك بسهولة من ChatGPT، DeepSeek، وملفات AI Studio مباشرةً. كل ذكرياتك في مكان واحد.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sitemap feature-icon"></i>
+                    <h3>تنظيم ذكي</h3>
+                    <p>صنّف محادثاتك، رتبها أبجديًا أو حسب الحجم والتاريخ، وابحث في المحتوى للعثور على أي معلومة في ثوانٍ.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-pen-to-square feature-icon"></i>
+                    <h3>تحكم كامل</h3>
+                    <p>عدّل العناوين والتصنيفات بسهولة. أرشيفك يتشكل حسب رؤيتك، لتصنع مكتبتك المعرفية الخاصة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-pie feature-icon"></i>
+                    <h3>رؤى تحليلية</h3>
+                    <p>اكتشف الكلمات الأكثر "اشتعالاً" في محادثاتك واحصائيات مفيدة لفهم أعمق لأفكارك وتفاعلاتك.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="container animated-section">
+            <h2 class="section-title">رحلة المعرفة في 3 خطوات 🚀</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon-wrapper"><i class="fas fa-download"></i></div>
+                    <h3>1. حمّل المخطوطة</h3>
+                    <p>كل ما تحتاجه هو ملف HTML واحد. لا تثبيت، لا تعقيدات. فقط قم بتنزيله واحتفظ به.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon-wrapper"><i class="fas fa-upload"></i></div>
+                    <h3>2. استدعِ الذكريات</h3>
+                    <p>افتح الملف في متصفحك واسحب ملفات JSON أو مجلدات المحادثات الخاصة بك إلى التطبيق.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon-wrapper"><i class="fas fa-book-open-reader"></i></div>
+                    <h3>3. أطلق العنان للاستكشاف</h3>
+                    <p>تنقل، ابحث، حلل، وعدّل أرشيفك. كل شيء يعمل محليًا على جهازك بأمان تام.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section id="testimonial" class="container animated-section">
+             <div class="testimonial-card">
+                 <blockquote>"في صمت الأكواد، همست الأصداء الرقمية... والآن، وجدت مخطوطة النار لتمنح تلك الهمسات صوتاً خالداً. إنه ليس مجرد أرشيف، بل هو مرآة الفكر المحفوظة من النسيان."</blockquote>
+                 <cite>— أمين المحفوظات الأخير</cite>
+             </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>صُنع بشغف ولهيب <i class="fa-solid fa-dragon"></i> لـ Codex Ignis</p>
+        <p>© 2024. كل الحقوق محفوظة... في ذاكرة التنين.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Sticky Header ---
+    const header = document.getElementById('app-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // --- 2. Canvas Particle Animation (Embers) ---
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particlesArray = [];
+    const numberOfParticles = Math.floor(canvas.width / 15);
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedY = Math.random() * 1.5 - 0.75;
+            this.speedX = Math.random() * 1.0 - 0.5;
+            this.opacity = Math.random() * 0.5 + 0.3;
+        }
+        update() {
+            this.y -= this.speedY;
+            this.x += this.speedX;
+
+            if (this.y < 0) {
+                this.y = canvas.height + 10;
+                this.x = Math.random() * canvas.width;
+            }
+            if (this.x < 0 || this.x > canvas.width) {
+                 this.speedX *= -1;
+            }
+        }
+        draw() {
+            ctx.fillStyle = `rgba(255, 59, 59, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particlesArray = [];
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+    });
+
+    // --- 3. Scroll Reveal Animation (Intersection Observer) ---
+    const animatedElements = document.querySelectorAll('.animated-section, .feature-card, .step, .testimonial-card');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add a staggered delay for grid/flex items
+                const delay = entry.target.dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, delay);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: '0px',
+        threshold: 0.15
+    });
+    
+    // Stagger feature cards animation
+    const featureCards = document.querySelectorAll('.feature-card');
+    featureCards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 100}ms`;
+        observer.observe(card);
+    });
+    
+    // Stagger steps animation
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+        step.style.transitionDelay = `${index * 150}ms`;
+        observer.observe(step);
+    });
+
+    // Observe other elements
+    const otherAnimated = document.querySelectorAll('.animated-section, .testimonial-card');
+    otherAnimated.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
