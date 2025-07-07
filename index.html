@@ -17,349 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Fira+Code&display=swap" rel="stylesheet">
 
     <style>
-        
-        /* --- Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
-        :root {
-            /* === Color Palette - Light Mode (Refined) === */
-            --primary-light: #665df5;   /* Adjusted vibrant purple */
-            --secondary-light: #00d5c3; /* Brighter teal accent */
-            --accent-light: #ff8c42;    /* Orange accent for contrast */
-            --bg-light: #f9f9fb;        /* Even lighter page bg */
-            --sidebar-bg-light: rgba(255, 255, 255, 0.65);
-            --main-bg-light: #ffffff;
-            --card-bg-light: #ffffff;
-            --text-main-light: #1b1b1f;
-            --text-secondary-light: #818186;
-            --border-light: #e0e0e5;
-            --shadow-color-light: rgba(94, 92, 245, 0.1); /* Primary color based shadow */
-            --user-bg-light: linear-gradient(135deg, #7168ff, var(--primary-light));
-            --user-text-light: #ffffff;
-            --ai-bg-light: #f0f1f5;     /* Slightly distinct AI bubble */
-            --ai-text-light: #48484d;
-            --code-bg-light: #edf1f5;
-            --code-text-light: #3f516d;
-            --code-border-light: #dce1e8;
-            --scrollbar-thumb-light: #bfc0c5;
-            --scrollbar-track-light: rgba(240, 240, 240, 0.5);
-            --backdrop-blur-light: blur(22px) saturate(190%);
-            --category-header-bg-light: rgba(230, 230, 235, 0.5);
-            --modal-bg-light: rgba(255, 255, 255, 0.8);
-            --input-bg-light: #f5f5f7;
-
-            /* === Color Palette - Dark Mode (Refined) === */
-            --primary-dark: #7e78fa;   /* Softer purple for dark */
-            --secondary-dark: #3eecec; /* Lighter teal */
-            --accent-dark: #ffa970;     /* Lighter orange */
-            --bg-dark: #0a0a0b;         /* Deep near black */
-            --sidebar-bg-dark: rgba(25, 25, 28, 0.7);
-            --main-bg-dark: #161618;
-            --card-bg-dark: #212124;
-            --text-main-dark: #fcfcfc;
-            --text-secondary-dark: #9a9aa0;
-            --border-dark: #38383c;
-            --shadow-color-dark: rgba(0, 0, 0, 0.25);
-            --user-bg-dark: linear-gradient(135deg, var(--primary-dark), #938eff);
-            --user-text-dark: #ffffff;
-            --ai-bg-dark: #313134;
-            --ai-text-dark: #dadadf;
-            --code-bg-dark: #242833;
-            --code-text-dark: #a9b8d0;
-            --code-border-dark: #3a3f4d;
-            --scrollbar-thumb-dark: #4d4d52;
-            --scrollbar-track-dark: rgba(40, 40, 43, 0.5);
-            --backdrop-blur-dark: blur(25px) saturate(170%);
-            --category-header-bg-dark: rgba(50, 50, 55, 0.5);
-            --modal-bg-dark: rgba(0, 0, 0, 0.75);
-            --input-bg-dark: #313134;
-
-
-            /* --- Structure, Animation, Defaults (Refined) --- */
-            --font-family: 'Cairo', sans-serif;
-            --font-code: 'Fira Code', Consolas, monospace;
-            --radius-lg: 18px; --radius-md: 14px; --radius-sm: 10px;
-            --sidebar-width: 320px;
-            --transition-fast: 0.2s ease-out;
-            --transition-med: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.5s ease-in-out;
-            --shadow-color: var(--shadow-color-light);
-            --shadow-1: 0 3px 6px var(--shadow-color);
-            --shadow-2: 0 7px 20px var(--shadow-color);
-            --shadow-3: 0 12px 35px var(--shadow-color);
-
-             /* --- Assign Defaults (Light Theme) --- */
-             --primary: var(--primary-light); --secondary: var(--secondary-light); --accent: var(--accent-light); --bg: var(--bg-light);
-             --sidebar-bg: var(--sidebar-bg-light); --main-bg: var(--main-bg-light); --card-bg: var(--card-bg-light); --text-main: var(--text-main-light);
-             --text-secondary: var(--text-secondary-light); --border: var(--border-light); --user-bg: var(--user-bg-light); --user-text: var(--user-text-light);
-             --ai-bg: var(--ai-bg-light); --ai-text: var(--ai-text-light); --code-bg: var(--code-bg-light); --code-text: var(--code-text-light);
-             --code-border: var(--code-border-light); --scrollbar-thumb: var(--scrollbar-thumb-light); --scrollbar-track: var(--scrollbar-track-light);
-             --backdrop-blur: var(--backdrop-blur-light); --category-header-bg: var(--category-header-bg-light); --modal-bg: var(--modal-bg-light); --input-bg: var(--input-bg-light);
-        }
-
-         body.dark-mode {
-             --primary: var(--primary-dark); --secondary: var(--secondary-dark); --accent: var(--accent-dark); --bg: var(--bg-dark);
-             --sidebar-bg: var(--sidebar-bg-dark); --main-bg: var(--main-bg-dark); --card-bg: var(--card-bg-dark); --text-main: var(--text-main-dark);
-             --text-secondary: var(--text-secondary-dark); --border: var(--border-dark); --shadow-color: var(--shadow-color-dark); --user-bg: var(--user-bg-dark);
-             --user-text: var(--user-text-dark); --ai-bg: var(--ai-bg-dark); --ai-text: var(--ai-text-dark); --code-bg: var(--code-bg-dark);
-             --code-text: var(--code-text-dark); --code-border: var(--code-border-dark); --scrollbar-thumb: var(--scrollbar-thumb-dark);
-             --scrollbar-track: var(--scrollbar-track-dark); --backdrop-blur: var(--backdrop-blur-dark); --category-header-bg: var(--category-header-bg-dark); --modal-bg: var(--modal-bg-dark); --input-bg: var(--input-bg-dark);
-         }
-
-        /* === Base & Background Animation === */
-         * { box-sizing: border-box; margin: 0; padding: 0; }
-         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-         html, body { height: 100%; overflow: hidden; }
-          @keyframes animatedBackground { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-         button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; display: inline-flex; align-items: center; justify-content: center; color: inherit; }
-         svg { width: 1em; height: 1em; fill: currentColor; vertical-align: -0.15em; }
-         h1,h2,h3,h4,h5,h6 { line-height: 1.3; font-weight: 800; margin-bottom: 0.6em; }
-         ::selection { background-color: var(--primary); color: var(--user-text); }
-
-        /* === Scrollbars === */
-        ::-webkit-scrollbar { width: 12px; height: 12px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: var(--radius-lg); border: 4px solid transparent; background-clip: content-box; transition: background-color var(--transition-fast), border-width var(--transition-fast); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); border-width: 3px; }
-        * { scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) transparent; }
-
-        /* === Sidebar (Glassmorphism & Enhanced Hover) === */
-        #sidebar {
-            width: var(--sidebar-width); height: 100vh; background-color: var(--sidebar-bg); -webkit-backdrop-filter: var(--backdrop-blur);
-            backdrop-filter: var(--backdrop-blur); border-left: 1px solid var(--border); display: flex; flex-direction: column;
-            flex-shrink: 0; box-shadow: var(--shadow-2); transition: all var(--transition-med);
-            position: relative; z-index: 1001;
-        }
-        body.dark-mode #sidebar { box-shadow: 5px 0 40px var(--shadow-color); border-color: rgba(255, 255, 255, 0.1);}
-        .sidebar-header { padding: 28px; border-bottom: 1px solid var(--border); flex-shrink: 0; display: flex; flex-direction: column; gap: 15px; transition: border-color var(--transition-med); background-color: rgba(255,255,255,0.05); }
-        body.dark-mode .sidebar-header { background-color: rgba(0,0,0,0.15); border-color: rgba(255, 255, 255, 0.1);}
-        .sidebar-header-top { display: flex; justify-content: space-between; align-items: center; }
-        .sidebar-header h2 { margin: 0; color: var(--text-main); font-size: 1.8em; font-weight: 900; letter-spacing: -0.7px; }
-        .sidebar-header h2 span { color: var(--primary); display: inline-block; transform: scale(1.2); animation: emojiWobble 2s infinite ease-in-out; margin-right: 5px; }
-        @keyframes emojiWobble { 0%, 100% { transform: rotate(-8deg) scale(1.2); } 50% { transform: rotate(8deg) scale(1.2); } }
-
-        #darkModeToggle { font-size: 1.4em; padding: 8px; border-radius: 50%; color: var(--text-secondary); transition: all var(--transition-fast); position: relative; overflow: hidden; }
-        #darkModeToggle:hover { background-color: rgba(128,128,128,0.1); color: var(--primary); transform: scale(1.15); }
-        #darkModeToggle::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(var(--primary-rgb, 0, 0, 0), 0.15); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; }
-        #darkModeToggle:active::before { width: 150%; height: 150%; }
-
-        .file-input-label, #downloadButton {
-             display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 18px; color: white; border-radius: var(--radius-md); font-weight: 700; text-align: center; transition: all var(--transition-fast); font-size: 1.0em; box-shadow: var(--shadow-1); cursor: pointer;
-             background-image: linear-gradient(60deg, var(--primary), var(--secondary));
-        }
-        #fileInput { display: none; }
-        .file-input-label:hover, #downloadButton:hover { transform: translateY(-3px) scale(1.03); box-shadow: var(--shadow-2); filter: brightness(1.1); }
-        .file-input-label:active, #downloadButton:active { transform: translateY(-1px) scale(0.99); filter: brightness(0.95); box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);}
-
-
-        /* Search Input Styling */
-         #search-container { position: relative; margin-top: 5px; }
-         #search-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); transition: color var(--transition-fast); pointer-events: none; font-size: 1.2em; }
-         #searchInput { width: 100%; background-color: var(--input-bg); color: var(--text-main); border: 2px solid var(--code-border); border-radius: var(--radius-md); padding: 12px 45px 12px 20px; font-family: var(--font-family); font-size: 1em; font-weight: 600; outline: none; transition: all var(--transition-med); box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
-         #searchInput::placeholder { color: var(--text-secondary); opacity: 0.8; font-weight: 500;}
-         #searchInput:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(102, 93, 245, 0.2); background-color: var(--card-bg); }
-         #searchInput:focus ~ #search-icon { color: var(--primary); }
-
-        #statusMessage { color: var(--text-secondary); font-size: 0.95em; min-height: 2em; text-align: center; transition: all var(--transition-med); display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; opacity: 0.9; }
-         #statusMessage .loader { width: 12px; height: 12px; animation: pulseLoader 1.5s infinite ease-in-out; background-color: var(--primary); border-radius: 50%; display: inline-block; border: none; }
-         @keyframes pulseLoader { 0%, 100% { transform: scale(0.8); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } }
-
-        #conversation-list-container { flex-grow: 1; overflow-y: auto; padding: 15px 10px; }
-        
-        /* --- 🌟 NEW: Category Styling --- */
-        .category-header {
-            display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; margin: 8px 5px 4px; cursor: pointer; border-radius: var(--radius-md);
-            background-color: var(--category-header-bg); transition: all var(--transition-fast); font-weight: 800; font-size: 1.1em; color: var(--text-main); border: 1px solid var(--border);
-        }
-        .category-header:hover { background-color: var(--primary); color: white; border-color: transparent; box-shadow: var(--shadow-1); }
-        .category-header .category-title { display: flex; align-items: center; gap: 10px; }
-        .category-header .category-count { font-size: 0.85em; font-weight: 600; opacity: 0.7; }
-        .category-header:hover .category-count { color: rgba(255,255,255,0.8); }
-        .category-toggle-icon { transition: transform var(--transition-med); display: flex; align-items: center; } /* Added display: flex */
-        .category-header.collapsed .category-toggle-icon { transform: rotate(-90deg); }
-        .conversation-group { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; overflow: hidden; transition: max-height var(--transition-med); }
-        .conversation-group.collapsed { max-height: 0 !important; } /* Use important to override dynamic height */
-        
-         #conversation-list-container li {
-             padding: 15px 22px; margin: 0 5px; cursor: pointer; border-radius: var(--radius-md);
-             transition: all 0.2s ease, max-height 0.4s ease-out, opacity 0.4s ease-out;
-             white-space: nowrap;   text-overflow: ellipsis; font-size: 1.05em;
-             font-weight: 700; position: relative; color: var(--text-secondary); border: 1px solid transparent;
-             max-height: 100px; opacity: 1;
-         }
-         #conversation-list-container li.hidden { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0; pointer-events: none; border-color: transparent; }
-          #conversation-list-container li::before {
-               content: ''; position: absolute; top: 0; right: 0; height: 100%; width: 4px;
-               background-color: var(--primary); transform: scaleY(0);
-               transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1);
-               transform-origin: bottom; border-radius: 0 4px 4px 0;
-           }
-         #conversation-list-container li:hover::before { transform: scaleY(1); transform-origin: top; }
-         #conversation-list-container li:hover { background-color: rgba(128,128,128,0.05); color: var(--text-main); border-color: rgba(128,128,128,0.08); transform: translateX(-2px); }
-         body.dark-mode #conversation-list-container li:hover { background-color: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);}
-         #conversation-list-container li.active {
-            background-image: linear-gradient(95deg, var(--primary) 0%, var(--secondary) 100%); color: white;
-            font-weight: 800; box-shadow: var(--shadow-1); transform: none; border-color: transparent;
-         }
-         #conversation-list-container li.active::before { transform: scaleY(1); }
-         #conversation-list-container li.active:hover { transform: none; box-shadow: var(--shadow-2); filter: brightness(1.05); }
-
-        /* === Main Content Area === */
-        #main-content { flex-grow: 1; height: 100vh; background-color: var(--main-bg); display: flex; flex-direction: column; overflow: hidden; transition: background-color var(--transition-med); border-top-left-radius: var(--radius-lg); border-bottom-left-radius: var(--radius-lg); }
-        #conversation-display-header {
-             padding: 22px 35px; background-color: var(--card-bg); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-1); flex-shrink: 0; z-index: 1000;
-             display: flex; align-items: center; gap: 18px; transition: all var(--transition-med);
-             position: relative; /* For category edit popup positioning */
-        }
-        #sidebarToggle { display: none; font-size: 1.7em; padding: 9px; border-radius: 50%; color: var(--text-secondary); transition: all var(--transition-fast); }
-         #sidebarToggle:hover { color: var(--primary); background-color: rgba(128,128,128,0.08); transform: scale(1.1) rotate(-5deg); }
-        #conversation-display-header h3 { margin: 0; font-size: 1.9em; font-weight: 900; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; transition: color var(--transition-med); letter-spacing: -0.5px; }
-        
-        /* --- 🌟 NEW: Category Display & Edit Button --- */
-        #currentCategory {
-            font-size: 1.0em; color: var(--text-secondary); font-weight: 600; background-color: var(--ai-bg); padding: 8px 15px;
-            border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition-fast);
-            display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-            white-space: nowrap;
-        }
-        #currentCategory:hover { background-color: var(--primary); color: white; transform: translateY(-2px); box-shadow: var(--shadow-1); }
-        #currentCategory svg { transition: transform var(--transition-fast); }
-        #currentCategory:hover svg { transform: rotate(15deg); }
-
-         #conversation-display-messages { flex-grow: 1; overflow-y: auto; padding: 35px 40px; display: flex; flex-direction: column; gap: 28px; }
-
-        /* === Skeleton Loading Placeholders === */
-         .skeleton-message { display: flex; gap: 15px; width: 80%; opacity: 0; animation: skeletonFadeIn 0.5s ease forwards; }
-         @keyframes skeletonFadeIn { to { opacity: 1; } }
-         .skeleton-message.user-skel { align-self: flex-end; flex-direction: row-reverse; }
-         .skeleton-message.ai-skel { align-self: flex-start; }
-         .skeleton-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: var(--ai-bg); flex-shrink: 0; }
-         .skeleton-content { flex-grow: 1; display: flex; flex-direction: column; gap: 8px; }
-         .skeleton-line { height: 14px; background-color: var(--ai-bg); border-radius: var(--radius-sm); }
-         .skeleton-line.short { width: 60%; } .skeleton-line.medium { width: 85%; }
-         .skeleton-avatar, .skeleton-line { background-image: linear-gradient(90deg, var(--ai-bg) 25%, var(--card-bg) 50%, var(--ai-bg) 75%); background-size: 200% 100%; animation: skeletonShimmer 1.8s infinite linear; }
-        body.dark-mode .skeleton-avatar, body.dark-mode .skeleton-line { background-image: linear-gradient(90deg, var(--ai-bg) 25%, var(--card-bg) 50%, var(--ai-bg) 75%); }
-         @keyframes skeletonShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-         #welcome-screen { text-align: center; color: var(--text-secondary); margin: auto; font-size: 1.3em; font-weight: 600; max-width: 450px; line-height: 1.8; transition: all var(--transition-med); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;}
-         #welcome-screen .welcome-icon { font-size: 3.5em; margin-bottom: 20px; opacity: 0.6; animation: spinAndFloat 8s infinite ease-in-out;}
-         @keyframes spinAndFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(10deg); }}
-         #welcome-screen h1 { font-size: 2.2em; color: var(--text-main); font-weight: 900; margin-bottom: 10px;}
-         #welcome-screen p { font-size: 1.1em; line-height: 1.7; max-width: 400px; }
-
-
-         /* === Message Styling - Refined Animation === */
-         .message { padding: 16px 24px; border-radius: var(--radius-lg); max-width: 80%; word-wrap: break-word; position: relative; font-size: 1.08em; border: 1px solid transparent; opacity: 0; animation: messageReveal 0.6s var(--transition-med) forwards; box-shadow: var(--shadow-1); transition: all var(--transition-fast); }
-         @keyframes messageReveal { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-         .message:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); }
-        .message .author { display: block; font-size: 0.85em; font-weight: 800; margin-bottom: 8px; text-transform: capitalize; letter-spacing: 0.5px; opacity: 0; transform: translateY(5px); animation: authorFadeIn 0.4s 0.1s ease forwards; }
-         @keyframes authorFadeIn { to { opacity: 0.85; transform: translateY(0); }}
-         
-        .user-message { background: var(--user-bg); color: var(--user-text); align-self: flex-end; margin-right: auto; border-bottom-left-radius: var(--radius-sm); border-color: transparent; }
-         .ai-message { background: var(--ai-bg); color: var(--ai-text); align-self: flex-start; margin-left: auto; border-bottom-right-radius: var(--radius-sm); border-color: var(--border); }
-         .user-message .author { color: rgba(255,255,255,0.85); } .ai-message .author { color: var(--text-secondary); }
-
-        /* === Markdown Styling - Final Touches === */
-         .message-content { margin-top: 10px; line-height: 1.8; } .message-content > *:first-child { margin-top: 0; } .message-content > *:last-child { margin-bottom: 0; }
-        @keyframes contentPartReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .ai-message .message-content > * { opacity: 0; animation: contentPartReveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-        .message-content p { margin-bottom: 1em; } .message-content > p:only-child { margin-bottom: 0; }
-        .message-content h1, .message-content h2, .message-content h3 { margin: 1.8em 0 1.1em 0; padding-bottom: 0.4em; border-bottom: 2px solid var(--border); font-weight: 900; }
-        .message-content h1 { font-size: 1.9em; color: var(--primary); } .message-content h2 { font-size: 1.6em; } .message-content h3 { font-size: 1.4em; }
-         .message-content ul, .message-content ol { margin-bottom: 1.1em; padding-right: 35px; }
-        .message-content li { margin-bottom: 0.7em; } .message-content li::marker { color: var(--primary); font-weight: bold; font-size: 1.2em; }
-        .message-content blockquote { border-right: 6px solid var(--primary); background-color: rgba(128,128,128,0.05); padding: 16px 28px 16px 12px; margin: 1.6em 0; color: var(--text-secondary); font-style: italic; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-left: none; box-shadow: inset 5px 0 10px rgba(0,0,0,0.03); }
-         body.dark-mode .message-content blockquote { background-color: rgba(255,255,255,0.02); box-shadow: inset 5px 0 10px rgba(255,255,255,0.02); }
-        .message-content blockquote p { margin-bottom: 0.6em; font-style: normal; } .message-content blockquote > *:last-child { margin-bottom: 0; }
-         .message-content pre { position: relative; background-color: var(--code-bg); border: 1px solid var(--code-border); border-radius: var(--radius-md); padding: 20px 22px; margin: 1.6em 0; overflow-x: auto; font-family: var(--font-code); font-size: 1em; direction: ltr; text-align: left; color: var(--code-text); line-height: 1.65; box-shadow: var(--shadow-1); }
-         .message-content code { /* Inline */ font-family: var(--font-code); font-size: 0.9em; background-color: var(--code-bg); padding: 0.35em 0.8em; border-radius: var(--radius-sm); border: 1px solid var(--code-border); color: var(--accent); }
-         .message-content pre code { background: none; padding: 0; border: none; border-radius: 0; color: inherit; font-size: inherit; box-shadow: none; }
-        
-         .code-copy-button { position: absolute; top: 12px; left: 12px; background-color: rgba(128, 128, 128, 0.1); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 0.85em; font-weight: 700; border: 1px solid var(--code-border); cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(-5px); transition: all var(--transition-fast); backdrop-filter: blur(5px); }
-         .message-content pre:hover .code-copy-button { opacity: 1; visibility: visible; transform: translateY(0); }
-         .code-copy-button:hover { background-color: var(--primary); color: white; border-color: transparent; }
-         .code-copy-button.copied { background-color: var(--secondary); color: white; border-color: transparent; }
-         .message-content table { border-collapse: separate; border-spacing: 0; margin: 2em 0; width: 100%; border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-1); overflow: hidden; }
-         .message-content th, .message-content td { padding: 15px 20px; text-align: right; border-bottom: 1px solid var(--border); }
-        .message-content td { border-right: 1px solid var(--border); background-color: var(--card-bg); transition: background-color 0.1s ease; }
-        .message-content td:first-child { border-right: none; }
-         .message-content th { background-color: var(--ai-bg); font-weight: 800; color: var(--text-secondary); text-transform: uppercase; font-size: 0.9em; border-bottom-width: 2px; }
-        .message-content tr:last-child td { border-bottom: none; }
-        .message-content tr:hover td { background-color: rgba(128,128,128,0.04); } body.dark-mode .message-content tr:hover td { background-color: rgba(255,255,255,0.04); }
-        .message-content a { color: var(--primary); text-decoration: none; font-weight: 700; border-bottom: 2px dotted currentColor; transition: color var(--transition-fast), border-color 0.2s ease; padding-bottom: 2px; }
-         .message-content a:hover { color: var(--secondary); border-bottom-style: solid; border-bottom-color: var(--secondary); }
-         .message-content hr { border: none; height: 1px; background-image: linear-gradient(to left, transparent, var(--border), transparent); margin: 3em 0; opacity: 0.7; }
-
-        /* --- 🌟 NEW: Category Edit Modal --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);
-            -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
-            display: flex; justify-content: center; align-items: center; z-index: 2000;
-            opacity: 0; visibility: hidden; transition: opacity var(--transition-med), visibility var(--transition-med);
-        }
-        .modal-overlay.visible { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-3);
-            width: 90%; max-width: 500px; transform: translateY(-20px); transition: transform var(--transition-med);
-            border: 1px solid var(--border); position: relative;
-        }
-        .modal-overlay.visible .modal-content { transform: translateY(0); }
-        .modal-content h3 { font-size: 1.6em; margin-top: 0; margin-bottom: 20px; color: var(--primary); }
-        .modal-category-input {
-            width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 2px solid var(--code-border);
-            border-radius: var(--radius-md); background-color: var(--input-bg); color: var(--text-main);
-            font-family: var(--font-family); font-size: 1em; outline: none; transition: all var(--transition-fast);
-        }
-        .modal-category-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(102, 93, 245, 0.15); }
-        .modal-category-list { max-height: 250px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 20px; }
-        .modal-category-list div {
-            padding: 10px 15px; cursor: pointer; border-bottom: 1px solid var(--border);
-            transition: background-color var(--transition-fast), color var(--transition-fast);
-            display: flex; align-items: center; gap: 8px; font-weight: 600;
-        }
-        .modal-category-list div:last-child { border-bottom: none; }
-        .modal-category-list div:hover { background-color: rgba(128,128,128,0.1); color: var(--primary); }
-        .modal-category-list div.selected { background-color: var(--primary); color: white; font-weight: 700; }
-        .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
-        .modal-btn {
-            padding: 10px 20px; border-radius: var(--radius-md); font-weight: 700; transition: all var(--transition-fast);
-        }
-        .modal-btn.confirm { background-color: var(--primary); color: white; }
-        .modal-btn.confirm:hover { background-color: var(--secondary); transform: translateY(-2px); box-shadow: var(--shadow-1); }
-        .modal-btn.cancel { background-color: var(--ai-bg); color: var(--text-secondary); border: 1px solid var(--border); }
-        .modal-btn.cancel:hover { background-color: var(--border); color: var(--text-main); transform: translateY(-2px); }
-
-        /* --- Temporary Toast/Notification --- */
-        #notification-toast {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background-color: var(--card-bg); color: var(--text-main); padding: 15px 25px;
-            border-radius: var(--radius-lg); box-shadow: var(--shadow-2);
-            opacity: 0; visibility: hidden; z-index: 3000;
-            transition: opacity var(--transition-med), transform var(--transition-med);
-            display: flex; align-items: center; gap: 10px; font-weight: 600;
-            border: 1px solid var(--border);
-        }
-        #notification-toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px); }
-
-
-         /* === Responsive === */
-         @media (max-width: 992px) { :root { --sidebar-width: 290px; } .message { max-width: 88%; } #conversation-display-messages { padding: 30px; gap: 22px; } }
-         @media (max-width: 768px) {
-             :root { --sidebar-width: 300px; }
-             #sidebar { position: fixed; top: 0; right: 0; height: 100%; transform: translateX(100%); box-shadow: -5px 0 40px var(--shadow-color); z-index: 1010; border-left: none; }
-            body.dark-mode #sidebar { box-shadow: -5px 0 45px rgba(0,0,0, 0.4); }
-             #sidebar.visible { transform: translateX(0); }
-            #sidebarToggle { display: block; }
-            #main-content { width: 100%; border-radius: 0; }
-             body::after { /* Mobile Overlay */ content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.55); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transition: opacity var(--transition-med), visibility var(--transition-med), backdrop-filter var(--transition-med); z-index: 1005; }
-             body.sidebar-overlay-active::after { opacity: 1; visibility: visible; }
-            #conversation-display-messages { padding: 25px; gap: 22px; }
-             .message { max-width: 92%; font-size: 1.05em; padding: 14px 20px; }
-            #conversation-display-header { padding: 18px 25px; }
-            #conversation-display-header h3 { font-size: 1.6em; }
-            #currentCategory { font-size: 0.9em; padding: 6px 12px; }
-        }
         /* =================================================================
            --- 🎨 || CODEX DNA: THE UNIFIED THEME (FIRE & SHADOW) || 🎨 ---
            ================================================================= */
@@ -502,6 +160,64 @@
         #searchInput:focus { border-color: var(--secondary); box-shadow: 0 0 0 4px rgba(240, 165, 0, 0.2); }
         #search-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; font-size: 1.2em; }
         
+        /* --- 🌟 NEW: Search Options Toggle --- */
+        .search-options {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: -5px 0 15px 0; /* Position below search bar */
+        }
+        .search-options .toggle-label-text {
+            font-weight: 600;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+            transition: color var(--transition-fast);
+        }
+        .search-options .toggle-label-text:hover {
+            color: var(--text-main);
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--ai-bg);
+            border: 1px solid var(--border);
+            transition: .4s;
+            border-radius: 12px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-secondary);
+            transition: .4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+            background-color: white;
+        }
+
         /* Conversation List (OmniView Style) */
         #conversation-list-container { padding: 0 10px; }
         .category-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; margin: 8px 0 4px; cursor: pointer; border-radius: var(--radius-md); background: rgba(128,128,128,0.08); transition: var(--transition-fast); font-weight: bold; }
@@ -661,8 +377,16 @@
                      <input type="file" id="folderInput" webkitdirectory directory multiple>
                  </div>
                  <div id="search-container">
-                    <input type="search" id="searchInput" placeholder="ابحث في السجلات...">
+                    <input type="search" id="searchInput" placeholder="ابحث في العناوين أو المحتوى...">
                     <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <!-- 🌟 NEW: Search Options Toggle -->
+                <div class="search-options">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="searchContentToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <label for="searchContentToggle" class="toggle-label-text">📜 بحث في المحتوى</label>
                 </div>
             </div>
             <div id="conversation-list-container">
@@ -739,7 +463,9 @@
             topWordsList: document.getElementById('top-words-list'), darkModeToggle: document.getElementById('darkModeToggle'),
             toggleLeftSidebar: document.getElementById('toggle-left-sidebar'), toggleRightSidebar: document.getElementById('toggle-right-sidebar'),
             sidebarLeft: document.getElementById('sidebar-left'), sidebarRight: document.getElementById('sidebar-right'),
-            searchInput: document.getElementById('searchInput'), downloadButton: document.getElementById('downloadButton'),
+            searchInput: document.getElementById('searchInput'),
+            searchContentToggle: document.getElementById('searchContentToggle'),
+            downloadButton: document.getElementById('downloadButton'),
             editCategoryBtn: document.getElementById('editCategoryBtn'), currentCategoryDisplay: document.getElementById('currentCategoryDisplay'),
             categoryEditModal: document.getElementById('categoryEditModal'), modalCategoryInput: document.getElementById('modalCategoryInput'),
             modalCategoryList: document.getElementById('modalCategoryList'), cancelCategoryEditBtn: document.getElementById('cancelCategoryEdit'),
@@ -772,6 +498,7 @@
             dom.toggleLeftSidebar.addEventListener('click', () => toggleSidebar(dom.sidebarLeft));
             dom.toggleRightSidebar.addEventListener('click', () => toggleSidebar(dom.sidebarRight));
             dom.searchInput.addEventListener('input', filterAndRenderConversationList);
+            dom.searchContentToggle.addEventListener('change', filterAndRenderConversationList);
             dom.downloadButton.addEventListener('click', downloadConversations);
             dom.editCategoryBtn.addEventListener('click', openCategoryEditModal);
             dom.cancelCategoryEditBtn.addEventListener('click', closeCategoryEditModal);
@@ -789,64 +516,93 @@
         }
         
         // ========================================================
-        // SECTION: Universal Data Transformation Engine (from DragonMind)
+        // --- 🌟 FIXED: Universal Data Transformation Engine (Restored from working version)
         // ========================================================
         function transformChatGPTData(rawData) {
             return rawData.map(convoData => {
-                const messages = []; const mapping = convoData.mapping; if (!mapping) return { title: convoData.title || "محادثة غامضة", messages: [], category: "بدون تصنيف" };
-                let rootNode = Object.values(mapping).find(node => node.parent === null); if (!rootNode) return { title: convoData.title, messages: [], category: "بدون تصنيف" };
+                const messages = [];
+                const mapping = convoData.mapping;
+                if (!mapping) return { title: convoData.title, messages: [] };
+                let rootNode = Object.values(mapping).find(node => node.parent === null);
+                if (!rootNode) return { title: convoData.title, messages: [] };
                 let currentNodeId = rootNode.children.length > 0 ? rootNode.children[0] : null;
                 while (currentNodeId) {
-                    const node = mapping[currentNodeId]; if (!node || !node.message) break;
-                    const role = node.message.author?.role; const contentParts = node.message.content?.parts;
+                    const node = mapping[currentNodeId];
+                    if (!node || !node.message) break;
+                    const role = node.message.author?.role;
+                    const contentParts = node.message.content?.parts;
                     if ((role === 'user' || role === 'assistant') && contentParts && contentParts.join('').trim() !== '') {
                         messages.push({ author: role === 'user' ? 'user' : 'ChatGPT', content: contentParts.join('\n') });
                     }
                     currentNodeId = node.children.length > 0 ? node.children[0] : null;
                 }
-                return { title: convoData.title, messages: messages, category: "بدون تصنيف" };
+                return { title: convoData.title, messages: messages };
             });
         }
 
         function transformDeepSeekData(rawData) {
-             return rawData.map((convo, index) => {
-                 const newConvo = { title: convo.title || `إشارة DeepSeek #${index + 1}`, messages: [], category: "بدون تصنيف" };
-                 const mapping = convo.mapping; if (!mapping || !mapping.root || !mapping.root.children) return newConvo;
-                 let currentNodeId = mapping.root.children[0]; let isUserTurn = true; 
-                 while (currentNodeId) {
-                     const messageNode = mapping[currentNodeId];
-                     if (messageNode && messageNode.message && typeof messageNode.message.content === 'string') {
-                         newConvo.messages.push({ author: isUserTurn ? 'user' : 'DeepSeek', content: messageNode.message.content });
-                         isUserTurn = !isUserTurn;
-                     }
-                     currentNodeId = messageNode && messageNode.children.length > 0 ? messageNode.children[0] : null;
-                 }
-                 return newConvo;
-             });
+            return rawData.map((convo, index) => {
+                    const newConvo = { title: convo.title || `إشارة DeepSeek #${index + 1}`, messages: [] };
+                    const mapping = convo.mapping;
+                    if (!mapping || !mapping.root || !mapping.root.children) return newConvo;
+                    let currentNodeId = mapping.root.children[0];
+                    let isUserTurn = true; 
+                    while (currentNodeId) {
+                        const messageNode = mapping[currentNodeId];
+                        if (messageNode && messageNode.message && typeof messageNode.message.content === 'string') {
+                            newConvo.messages.push({ author: isUserTurn ? 'user' : 'DeepSeek', content: messageNode.message.content });
+                            isUserTurn = !isUserTurn;
+                        }
+                        currentNodeId = messageNode && messageNode.children.length > 0 ? messageNode.children[0] : null;
+                    }
+                    return newConvo;
+                });
         }
 
         function transformAiStudioData(fileName, content) {
-            const data = JSON.parse(content); if (!data.chunkedPrompt || !Array.isArray(data.chunkedPrompt.chunks)) return null;
-            const messages = data.chunkedPrompt.chunks.filter(chunk => chunk.role && chunk.text && !chunk.isThought).map(chunk => ({ author: chunk.role === 'user' ? 'user' : 'AI Studio', content: chunk.text }));
-            return { title: fileName.replace('.json', ''), messages: messages, category: "بدون تصنيف" };
+            const data = JSON.parse(content);
+            if (!data.chunkedPrompt || !Array.isArray(data.chunkedPrompt.chunks)) return null;
+            const messages = data.chunkedPrompt.chunks
+                .filter(chunk => chunk.role && chunk.text && !chunk.isThought)
+                .map(chunk => ({ author: chunk.role === 'user' ? 'user' : 'AI Studio', content: chunk.text }));
+            return { title: fileName.replace('.json', ''), messages: messages };
         }
 
         function detectAndProcessFileContent(content) {
             try {
-                const data = JSON.parse(content); let transformedData;
-                if (Array.isArray(data)) {
-                    if (data.length === 0) throw new Error("الملف يحتوي على مصفوفة فارغة.");
-                    if (data[0].mapping && data[0].mapping.root) { showToast("🧬 تم التعرف على إشارة DeepSeek..."); transformedData = transformDeepSeekData(data); }
-                    else if (data[0].mapping) { showToast("🤖 تم التعرف على إشارة ChatGPT..."); transformedData = transformChatGPTData(data); }
-                    else if (data[0].messages) { showToast("📜 تم التعرف على سجلات الأرشيف..."); transformedData = data; }
-                    else { throw new Error("بنية مصفوفة JSON غير معروفة."); }
-                } else if (typeof data === 'object' && data !== null) {
-                    showToast("✨ تم التعرف على إشارة AI Studio...");
-                    const singleConvo = transformAiStudioData("Imported File", content);
-                    if (singleConvo) { transformedData = [singleConvo]; } else { throw new Error("بنية كائن JSON غير متوافقة."); }
-                } else { throw new Error("الملف ليس بصيغة JSON صالحة."); }
+                const data = JSON.parse(content);
+                if (!Array.isArray(data) || data.length === 0) {
+                     throw new Error("الملف لا يحتوي على مصفوفة محادثات صالحة. قد يكون ملف AI Studio منفردًا.");
+                }
+
+                let transformedData;
+                if (data[0].mapping && data[0].mapping.root) {
+                    showToast("🧬 تم التعرف على إشارة DeepSeek...");
+                    transformedData = transformDeepSeekData(data);
+                } else if (data[0].mapping) {
+                    showToast("🤖 تم التعرف على إشارة ChatGPT...");
+                    transformedData = transformChatGPTData(data);
+                } else if (data[0].messages) {
+                    showToast("📜 تم التعرف على سجلات الأرشيف...");
+                    transformedData = data;
+                } else {
+                    throw new Error("بنية ملف JSON غير معروفة. لا يمكن تحديد المصدر.");
+                }
                 processAllConversations(transformedData);
-            } catch (e) { handleFileReadError(e); }
+            } catch (e) {
+                // If parsing an array fails, try parsing it as a single AI studio file object
+                 try {
+                    const singleConvo = transformAiStudioData("Imported File", content);
+                    if (singleConvo) {
+                        showToast("✨ تم التعرف على إشارة AI Studio...");
+                        processAllConversations([singleConvo]);
+                    } else {
+                        throw new Error("فشل تحليل الملف كمصفوفة وككائن منفرد.");
+                    }
+                } catch (finalError) {
+                    handleFileReadError(finalError);
+                }
+            }
         }
 
         // ===================================
@@ -863,7 +619,12 @@
         async function handleFolderSelect(event) {
             const files = event.target.files; if (!files || files.length === 0) return; resetUIForLoad();
             showToast(`✨ جاري استدعاء ${files.length} ذاكرة من AI Studio...`);
-            const promises = Array.from(files).map(file => file.name.endsWith('.json') ? file.text().then(content => ({ name: file.name, content })) : Promise.resolve(null));
+            const promises = Array.from(files).map(file => {
+                 if (file.name.endsWith('.json') || !file.name.includes('.')) {
+                    return file.text().then(content => ({ name: file.name, content }));
+                 }
+                 return Promise.resolve(null);
+            });
             try {
                 const fileContents = (await Promise.all(promises)).filter(Boolean);
                 const transformedData = fileContents.map(file => { try { return transformAiStudioData(file.name, file.content); } catch (e) { return null; }}).filter(Boolean);
@@ -872,7 +633,9 @@
         }
 
         function processAllConversations(data) {
+            // Add the category property required by the new UI
             allConversations = data.map(convo => ({ category: "بدون تصنيف", ...convo }));
+            
             requestAnimationFrame(() => {
                 if (allConversations.length > 0) {
                     filterAndRenderConversationList(); // This renders the full list initially
@@ -884,13 +647,30 @@
             });
         }
         
-        // This function filters the master list AND renders the result
+        // --- Search and Render Function ---
         function filterAndRenderConversationList() {
             dom.conversationListContainer.innerHTML = '';
             if (allConversations.length === 0) return;
-            const searchTerm = dom.searchInput.value.toLowerCase();
-            const filteredConversations = allConversations.map((convo, index) => ({...convo, originalIndex: index}))
-                                                       .filter(convo => (convo.title || "").toLowerCase().includes(searchTerm));
+
+            const searchTerm = dom.searchInput.value.toLowerCase().trim();
+            const searchInContent = dom.searchContentToggle.checked;
+
+            const filteredConversations = searchTerm === ''
+                ? allConversations.map((convo, index) => ({...convo, originalIndex: index})) // Show all if search is empty
+                : allConversations
+                    .map((convo, index) => ({...convo, originalIndex: index}))
+                    .filter(convo => {
+                        const titleMatch = (convo.title || "").toLowerCase().includes(searchTerm);
+                        if (titleMatch) return true;
+
+                        if (searchInContent) {
+                            return (convo.messages || []).some(msg => 
+                                (msg.content || "").toLowerCase().includes(searchTerm)
+                            );
+                        }
+                        
+                        return false;
+                    });
 
             const grouped = filteredConversations.reduce((acc, convo) => {
                 const category = convo.category || 'بدون تصنيف';
@@ -1044,10 +824,8 @@
             if (!newCategory) { showToast('⚠️ التصنيف لا يمكن أن يكون فارغًا!', false); return; }
             allConversations[activeConversationIndex].category = newCategory;
             
-            // Re-render the sidebar to reflect potential changes
             filterAndRenderConversationList();
             
-            // Update the current view
             dom.currentCategoryDisplay.textContent = newCategory;
             dom.breadcrumbs.querySelector('.breadcrumb-category').textContent = newCategory;
             
@@ -1065,7 +843,7 @@
         }
 
         function resetUIForLoad() {
-            dom.messageContainer.innerHTML = '<div></div>'; // Skeleton can be added here
+            dom.messageContainer.innerHTML = '<div></div>';
             dom.conversationTitleDisplay.textContent = 'جاري الاستدعاء...';
             dom.editCategoryBtn.style.display = 'none';
             activeConversationIndex = -1; activeListItem = null;
@@ -1076,8 +854,8 @@
             resetUIForLoad();
             dom.conversationTitleDisplay.textContent = 'ابدأ الرحلة';
             dom.breadcrumbs.innerHTML = `<span class="breadcrumb-main"><i class="fa-solid fa-dragon"></i> مخطوطة النار</span>`;
-            dom.messageContainer.innerHTML = ''; // Clear skeleton
-            dom.initialView.style.display = 'flex'; // show initial
+            dom.messageContainer.innerHTML = ''; 
+            dom.initialView.style.display = 'flex';
             dom.initialView.style.flexDirection = 'column';
             dom.initialView.style.justifyContent = 'center';
         }
@@ -1088,7 +866,6 @@
 
         function toggleSidebar(sidebar, forceState) {
             const shouldBeVisible = forceState === undefined ? !sidebar.classList.contains('visible') : forceState;
-            // Ensure only one sidebar is open at a time on small screens
             if (shouldBeVisible && window.innerWidth <= 992) {
                 if (sidebar === dom.sidebarLeft && dom.sidebarRight.classList.contains('visible')) toggleSidebar(dom.sidebarRight, false);
                 if (sidebar === dom.sidebarRight && dom.sidebarLeft.classList.contains('visible')) toggleSidebar(dom.sidebarLeft, false);
