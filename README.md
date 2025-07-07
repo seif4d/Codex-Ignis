@@ -1,74 +1,87 @@
 <div align="center">
+  <h1>Codex Ignis 📜 مخطوطة النار</h1>
+  <p><strong>حيثُ لا تُنسى المعرفة، وتُحفظ أصداء الحكمة في لهيب الأرشيف.</strong></p>
+    <img src="cover.png" alt="Codex Ignis Logo" width="350"/>
+  <p>
+    <a href="https://seif4d.github.io/Codex-Ignis/"><strong>🚀 جرب الصفحة الرئيسية</strong></a>
+       |   
+    <a href="https://seif4d.github.io/Codex-Ignis/app.html"><strong>🔥 افتح التطبيق مباشرة</strong></a>
+  </p>
 
-# 🔥 Codex Ignis | مخطوطة النار 🔥
-### Your Personal, Private, and Powerful AI Conversation Archive.
-### أرشيفك الشخصي، الخاص، والقوي لمحادثات الذكاء الاصطناعي.
-
-[![Status](https://img.shields.io/badge/status-active-success.svg)](https://github.com/seif4d/Codex-Ignis)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
+  <p>
+    <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" alt="Status">
+    <img src="https://img.shields.io/github/license/seif4d/Codex-Ignis?style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/badge/Built%20with-HTML%2FCSS%2FJS-orange?style=for-the-badge" alt="Built with">
+    <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge" alt="PRs Welcome">
+  </p>
 </div>
+
+> **Codex Ignis** هو ليس مجرد عارض ملفات، بل هو نظام أرشفة ذكي ومتكامل لإدارة المعرفة الشخصية المستخرجة من محادثات الذكاء الاصطناعي. استدعِ، استكشف، وحلل أرشيف محادثاتك في واجهة واحدة، قوية، وساحرة تعمل بالكامل في متصفحك.
+
+![Codex Ignis Screenshot](screenshot.png)
 
 ---
 
-## 📜 About The Codex | عن المخطوطة
+## 🐉 قوة التنين بين يديك: المميزات الرئيسية
 
-**Codex Ignis** is an elegant, offline-first archive viewer that transforms your exported AI chat logs into a beautifully organized, searchable, and insightful library. It runs entirely in your browser, ensuring that your data remains yours and yours alone. No uploads, no servers, just pure, private intelligence at your fingertips.
+*   ✨ **استدعاء شامل:** قم باستيراد محادثاتك بسهولة من **ChatGPT**، **DeepSeek**، وملفات **AI Studio** مباشرةً. كل ذكرياتك في مكان واحد.
+*   🧠 **تنظيم ذكي:** صنّف محادثاتك، رتبها أبجديًا أو حسب الحجم والتاريخ، وابحث في العناوين والمحتوى للعثور على أي معلومة في ثوانٍ.
+*   ✏️ **تحكم كامل:** عدّل عناوين المحادثات وتصنيفاتها بسهولة. أرشيفك يتشكل حسب رؤيتك، لتصنع مكتبتك المعرفية الخاصة.
+*   📊 **رؤى تحليلية:** اكتشف "الكلمات الأكثر اشتعالاً" في محادثاتك واحصائيات مفيدة لفهم أعمق لأفكارك وتفاعلاتك.
+*   🚀 **يعمل بالكامل في المتصفح:** لا حاجة للتثبيت أو رفع ملفاتك لأي خادم. كل شيء يحدث محلياً على جهازك.
+*   🔒 **الخصوصية أولاً:** ملفاتك تبقى ملكك. لا يتم إرسال أي بيانات لأي مكان. أنت تمتلك أرشيفك بالكامل.
+*   🎨 **تصميم ساحر:** واجهة مستخدم جميلة مستوحاة من "النار والظل"، مع وضع ليلي ونهاري وتجربة استخدام سلسة.
 
-## ✨ Legendary Features | ميزات أسطورية
+---
 
--   🔮 **Enchanting Interface:** A modern, elegant design with a stunning dark mode, fluid animations, and a three-column layout for maximum productivity.
--   🧠 **Intelligent Polyglot:** Natively understands and processes archive files from multiple platforms, including **ChatGPT**, **DeepSeek**, and **Google AI Studio**.
--   🗂️ **Masterful Organization:** Easily categorize your conversations. Create new categories on the fly or assign existing ones to bring order to your creative chaos.
--   📊 **Insightful Analysis:** The "Analysis Panel" provides instant metadata for any conversation, including message/word counts and a "Top Words" list to reveal the core themes of your discussions.
--   🔒 **Absolute Privacy:** **100% client-side.** All processing happens locally in your browser. Your files are never uploaded, ensuring complete confidentiality.
--   📥 **Export & Preserve:** After organizing and categorizing, export your entire polished archive into a single, clean JSON file for backup or sharing.
--   🌍 **Authentic RTL Support:** Meticulously designed from the ground up to provide a flawless experience for right-to-left languages like Arabic.
+## 🚀 البدء والاستخدام (في أقل من دقيقة)
 
-## 🚀 Live Demo & Usage | تجربة حية وطريقة الاستخدام
+استخدام **Codex Ignis** بسيط للغاية:
 
-Experience the magic instantly. No installation required.
+1.  **افتح التطبيق:** اذهب مباشرة إلى [**صفحة التطبيق**](https://seif4d.github.io/Codex-Ignis/app.html) التي تعمل عبر GitHub Pages.
+2.  **(اختياري) احتفظ بنسخة:** يمكنك تحميل ملف `app.html` بالضغط على `Ctrl + S` للاحتفاظ بنسخة تعمل بدون انترنت على جهازك.
+3.  **استدعِ الذكريات:** من داخل التطبيق، اضغط على زر "ملف" أو "مجلد" لتحميل محادثاتك.
+4.  **أطلق العنان للاستكشاف!** تصفح، ابحث، حلل، وعدّل أرشيفك.
 
-<div align="center">
+---
 
-**[► Click Here for a Live Demo ◄](https://seif4d.github.io/Codex-Ignis/)**
-</div>
+## 📜 الصيغ المدعومة حالياً
 
-<br>
+التطبيق مصمم للتعرف تلقائيًا على بنية الملفات من المصادر التالية:
 
-Or, for local usage:
-1.  **Download:** Download the `gn.html` file from this repository.
-2.  **Open:** Open the file in any modern web browser (Chrome, Firefox, Edge).
-3.  **Load:** Click the "Load File/Folder" button and select your AI chat export file(s).
-4.  **Explore:** Immerse yourself in your newly organized archive!
+-   ملف `conversations.json` من **ChatGPT**.
+-   ملف `chat_log.json` من **DeepSeek**.
+-   مجلد يحتوي على ملفات JSON من **Google AI Studio**.
+-   ملف `Codex_Ignis_Export.json` الذي تم تصديره من التطبيق نفسه.
 
-## 🛠️ Tech Stack | التقنيات المستخدمة
+---
 
--   **Vanilla JavaScript (ES6+):** The pure, powerful core of the application. No frameworks needed.
--   **HTML5 & CSS3:** For a modern, structured, and beautifully styled interface.
--   **Marked.js:** For fast and reliable Markdown parsing.
--   **DOMPurify:** To ensure all rendered content is safe and secure from XSS attacks.
+## 🛠️ التقنيات المستخدمة
 
-## 🗺️ Future Roadmap | خارطة الطريق المستقبلية
+هذا المشروع هو دليل على قوة تقنيات الويب الحديثة، وهو مبني باستخدام:
 
-The fire is just getting started. Here are some ideas for the future:
+-   **HTML5**
+-   **CSS3** (مع استخدام متغيرات CSS لتصميم مرن)
+-   **JavaScript (Vanilla)**: لا توجد مكتبات أو أطر عمل ضخمة!
+-   **Marked.js:** لتحويل Markdown إلى HTML.
+-   **DOMPurify:** لضمان الأمان عند عرض محتوى HTML.
 
--   [ ] **Advanced Search:** Implement full-text search within and across all conversations.
--   [ ] **More Exporters:** Add support for exporting conversations to Markdown or PDF.
--   [ ] **New Platform Support:** Integrate parsers for other AI platforms like Claude.
--   [ ] **UI Themes:** Introduce more color themes for personalization.
+---
 
-## 🤝 Contributing | المساهمة
+## 🤝 للمساهمة
 
-Your touch, your ideas... are always welcome here. If this project sparks something in you, feel free to contribute!
+أهلاً بك يا رفيق الدرب في رحلة تطوير هذه المخطوطة! المساهمات مرحب بها جداً. سواء كانت لديك فكرة لميزة جديدة، أو وجدت خطأً، أو ترغب في تحسين الكود:
 
-1.  **Fork** the repository.
-2.  Create a new **Branch** (`git checkout -b feature/YourAmazingFeature`).
-3.  **Commit** your changes (`git commit -m 'Add some YourAmazingFeature'`).
-4.  **Push** to the branch (`git push origin feature/YourAmazingFeature`).
-5.  Open a **Pull Request**.
+1.  قم بعمل **Fork** للمستودع.
+2.  أنشئ فرعاً جديداً لميزتك (`git checkout -b feature/AmazingFeature`).
+3.  قم بعمل **Commit** لتغييراتك (`git commit -m 'Add some AmazingFeature'`).
+4.  قم بعمل **Push** للفرع (`git push origin feature/AmazingFeature`).
+5.  افتح **Pull Request**.
 
-## 📄 License | الرخصة
+يمكنك أيضاً فتح **Issue** لمناقشة فكرة أو الإبلاغ عن مشكلة.
 
-This project is licensed under the MIT License. See the [LICENSE](/LICENSE) file for details.
+---
+
+## ⚖️ الترخيص
+
+هذا المشروع مرخص تحت رخصة MIT. انظر ملف `LICENSE` لمزيد من التفاصيل.
